@@ -7,10 +7,6 @@ import java.util.Optional;
 public class PersonRepository {
     private Map<String, Person> persons = new HashMap<>();
 
-    public Map<String, Person> getPersons() {
-        return persons;
-    }
-
     public Optional<Person> getPersonById(String id) {
         return Optional.ofNullable(persons.get(id));
     }
@@ -19,5 +15,11 @@ public class PersonRepository {
         persons.put(person.id(), person);
     }
 
-
+    public int countGender(Gender gender) {
+        int count = 0;
+        for (Person person : persons.values()) {
+            if (person.gender().equals(gender)) count++;
+        }
+        return count;
+    }
 }
